@@ -10,7 +10,9 @@ var gulp        = require('gulp'),
 	prefixer    = require('autoprefixer-stylus'),
 	imagemin    = require('gulp-imagemin'),
 	cp          = require('child_process'),
-	cache       = require('gulp-cache');
+	cache       = require('gulp-cache'),
+	 os      	= require('os'),
+	isWindows   = os.type() == 'Windows_NT';
 
 var messages = {
 	jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
@@ -21,8 +23,11 @@ var messages = {
  */
 gulp.task('jekyll-build', function (done) {
 	browserSync.notify(messages.jekyllBuild);
-	return cp.spawn('jekyll', ['build'], {stdio: 'inherit'})
-		.on('close', done);
+	if (isWindows) {
+        return cp.exec('jekyll', ['build'], {stdio: 'inherit'}).on('close', done);
+    } else {
+        return cp.spawn('jekyll', ['build'], {stdio: 'inherit'}).on('close', done);
+    }
 });
 
 /**
