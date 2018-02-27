@@ -8,6 +8,9 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  router: {
+    base: '/'
+  },
   head: {
     title: siteData.title,
     meta: [
