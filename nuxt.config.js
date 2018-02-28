@@ -4,13 +4,22 @@ const siteData = {
   author: 'Lucas Maia e Silva'
 }
 
+const posts = require('./assets/posts').posts
+
 module.exports = {
   /*
   ** Headers of the page
   */
-  router: {
-    base: '/'
+  // router: {
+  //   base: '/blog/'
+  // },
+  generate: {
+    routes: [
+      ...posts.map(item => `/posts/${item.slug}`)
+    ]
   },
+  mode: 'spa',
+  ssr: false,
   head: {
     title: siteData.title,
     meta: [
