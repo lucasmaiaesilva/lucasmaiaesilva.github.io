@@ -38,7 +38,7 @@
   color: #abb2bf;
   background: #282c34;
   width: 100%;
-  padding: 2rem 4rem;
+  padding: 1rem 1rem;
 }
 
 .post-content p > code {
