@@ -79,7 +79,9 @@
 
 @media screen and (min-width: 734px) {
   .post-content pre {
-    margin: 3rem 0;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    box-sizing: content-box;
   }
   .post-content,
   .post-content pre {
@@ -98,9 +100,6 @@
   .post-content,
   .post-content pre, {
     padding: 2rem 4rem;
-  }
-  .post-content pre {
-    margin: 3rem 0;
   }
 }
 </style>
