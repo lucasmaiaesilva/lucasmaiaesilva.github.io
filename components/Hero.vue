@@ -1,12 +1,15 @@
 <template>
   <section class="hero shaddow">
     <div class="container">
-      <div class="hero-container">
-        <div class="hero-content">
-          <div class="text-block">
-            <h2>Curso CSS</h2>
-            <span>Moda Foca</span>
-          </div>
+      <div class="led-board">
+        <div class="coffee">
+          <img src="~/assets/img/coffee.svg" alt="">
+        </div>
+        
+        <div class="content-led">
+          <p class="title">Curso completo de CSS</p>
+          <p class="description">Pela Udemy - em breve</p>
+          <p class="description large-up">Siga em minhas redes sociais para cupons de desconto 😉</p>
         </div>
       </div>
     </div>
@@ -16,59 +19,69 @@
 <style>
   @import url('https://fonts.googleapis.com/css?family=Lato:100,300,700');
   .hero {
-    /* background: url("~/assets/img/background.png");
-    background-size: cover; */
-    background: rgb(91, 26, 19);
-  }
-
-  .hero .hero-container {
-    font-family: 'Lato', sans-serif;
-    background: rgb(218, 48, 37);
-    margin: 2rem 0;
-    border-radius: 1rem;
-    padding: .5rem;
-  }
-
-  .hero .hero-container .hero-content {
-    background: #2a2a2a;
+    background: #110C26;
     padding: 3rem 0;
-    border-radius: .5rem;
+  }
+  .led-board {
+    background: url("~/assets/img/board.svg");
+    background-size: 100% contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    height: 13rem;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .hero .hero-container .hero-content .text-block {
-    margin: auto;
+
+  .led-board .coffee {
+    display: none;
   }
-  .hero .hero-container .hero-content h2 {
+
+  .led-board .content-led {
     text-align: center;
-    font-weight: 700;
-    font-size: 3rem;
     color: #fff;
-    text-shadow: 0 0 .4rem gold;
-    margin-bottom: 0;
-    letter-spacing: .5rem;
-    animation: blink .9s infinite alternate;
   }
-  .hero .hero-container .hero-content span {
+
+  .led-board .content-led .title {
+    font-size: 1.8rem;
+  }
+
+  .led-board .content-led .description {
     font-size: 1.2rem;
-    letter-spacing: 1rem;
-    color: #fff;
-    animation: blink .9s infinite alternate;
-    animation-delay: .45s;
-    text-align: center;
-    display: block;
-    margin-top: .4rem;
+    margin: .5rem 0;
+    letter-spacing: .1rem;
   }
-  @-webkit-keyframes blink {
-    from { opacity: 1; }
-    to { opacity: 0.3; }
+
+  .led-board .content-led .large-up {
+    display: none;
   }
+
   @media screen and (min-width: 734px) {
-    .hero .hero-container {
-      padding: 1rem;
+    .led-board {
+      height: 18rem;
     }
-    .hero .hero-container .hero-content span {
-      /* margin-top: 1rem; */
+    .led-board .content-led .large-up {
+      max-width: 18rem;
+      margin: 0 auto;
+      margin-top: 1rem;
+      font-weight: 300;
+      display: block;
+      font-size: .9rem;
     }
   }
+
+  @media screen and (min-width: 1024px) {
+    .led-board .coffee {
+      display: block;
+      margin-right: 1rem;
+    }
+    .coffee img {
+      width: 10rem;
+      height: auto;
+    }
+    .led-board {
+      height: 22rem;
+    }
+  }
+
 </style>

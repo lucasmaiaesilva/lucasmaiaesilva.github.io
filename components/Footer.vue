@@ -12,6 +12,9 @@
           <a href="https://twitter.com/lucasmaiaesilva">
             <img class="icon" src="~/assets/img/twitter.png" />
           </a>
+          <a href="https://www.instagram.com/lucasmaiaesilva/">
+            <img class="icon" src="~/assets/img/instagram.png" />
+          </a>
         </span>
       </div>
     </div>

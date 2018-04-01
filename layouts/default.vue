@@ -8,7 +8,7 @@
         </header>
       </div>
     </section>
-    <!-- <Hero /> -->
+    <Hero />
     <section class="content">
       <nuxt />
     </section>
