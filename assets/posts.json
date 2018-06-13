@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "title": "Como criar um componente de Fetch reutilizável com Render Props",
+      "slug": "entendendo-render-props-em-react",
+      "image": {
+        "url": "react.png",
+        "alt": "como criar um componente de Fetch reutilizável com Render Props"
+      },
+      "date": "13/06/2018"
+    },
+    {
       "title": "Repensando Layouts com Flexbox",
       "slug": "repensando-layouts-com-flexbox",
       "image": {

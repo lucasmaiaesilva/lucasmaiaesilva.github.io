@@ -3,11 +3,12 @@ Saudações meu povo. Depois de mais de 2 anos sem escrever um post, finalmente 
 
 Peço mil perdões porque como esse é um post bem específico não vou ficar me atentando a explicar o que é o React ou como funciona, até porquê existem vários tipos de materiais por ai que vão te fazer entender bem essa feature, e partindo do pressuposto que você veio até aqui pelo título do post.
 
-Recentemente estou criando a ementa de um curso que eu e o [Caio Alcantara](https://twitter.com/clucasalcantara) vou postar pra vocês em breve pela Udemy, e nesse curso vão haver alguns componentes que o aluno ficará como portfolio para serem utilizados em projetos futuros, e me veio na cabeça a ideia de criar um componente `<Fetch>`.
+Recentemente estou criando a ementa de um curso que eu e o [Caio Alcantara](https://twitter.com/clucasalcantara) vamos postar pra vocês em breve pela Udemy, e nesse curso vão haver alguns componentes que o aluno ficará como portfolio para serem utilizados em projetos futuros, e me veio na cabeça a ideia de criar um componente `<Fetch>`.
 
 ## Entendendo o problema
 
-Não é exatamente um problema, mas uma coisa que estava me incomodando bastante ultimamente no React era o fato de que mesmo trabalhando com componentes, algumas coisas se tornam muito difíceis de serem reaproveitadas, principalmente quando estamos falando de lógicas envolvendo ciclo de vida, ou algo que fuja um pouco da nosso bom e velho render() e eu sou um pouco incomodado com diretório de 'utils' dentro de projetos ( as vezes são sim necessários ). E recentemente eu li um post do [Michael Jackson](https://twitter.com/mjackson) que é um dos criadores do react router e foi meu tutor no Nanodegree de React da Udacity ( não me pagaram pra fazer jabá, #thalesMeMandaUmaCamisa ), e ele explicou essa feature do renderProps ou também conhecida como children as a function que me resolvia uma coisa que estava me incomodando e resolvi deixar isso aqui para vocês que tenho certeza que vai ajudar muito vocês, aliás, [clique aqui](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) para ler o post dele sobre o assunto, mas uma coisa que me chamou atenção é que no post dele, ele colocou um exemplo um pouco abstrato demais e resolvi explicar aqui para vocês com um exemplo mais da vida real pra vocês entenderem o quão poderoso é essa feature. Mas vamos então ao que interessa.
+
+Não é exatamente um problema, mas uma coisa que estava me incomodando bastante ultimamente no React era o fato de que mesmo trabalhando com componentes, algumas coisas se tornam muito difíceis de serem reaproveitadas, principalmente quando estamos falando de lógicas envolvendo ciclo de vida, ou algo que fuja um pouco da nosso bom e velho render( ) e eu sou um pouco incomodado com diretório de 'utils' dentro de projetos ( as vezes são sim necessários ). E recentemente eu li um post do [Michael Jackson](https://twitter.com/mjackson) que é um dos criadores do react router e foi meu tutor no Nanodegree de React da Udacity ( não me pagaram pra fazer jabá, #thalesMeMandaUmaCamisa ), e ele explicou essa feature do renderProps ou também conhecida como children as a function que resolvia uma coisa que estava me incomodando e resolvi deixar isso aqui para vocês que tenho certeza que vai ajudar muito, aliás, [clique aqui](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) para ler o post dele sobre o assunto, mas uma coisa que me chamou atenção é que no post dele, ele colocou um exemplo um pouco abstrato demais e resolvi explicar aqui para vocês com um exemplo mais da vida real pra vocês entenderem o quão poderoso é essa feature. Mas vamos então ao que interessa.
 
 Em quase todos os projetos que fazemos em React precisamos consumir dados de apis de outros locais correto? E para fazer isso temos que criar fetchs em nossos projetos. Existem algumas formas de se fazer fetch com react, mas a lógica é sempre a mesma, dêem uma olhada no exemplo:
 
@@ -61,9 +62,9 @@ Se você observar com atenção vai perceber que:
 
 * O componente inicia em um estado de Loading ou alguma flag que te permita controlar se aquele dado já chegou ou não para o componente.
 
-* O fetch é feito depois que a estrutura do componente já existe e faz um setState dentro do ComponentDidMount ( maneira recomendade na documentação do React ), depois que esses dados chegam para a aplicação, fazendo a aplicação re-renderizar e trazer finalmente os dados.
+* O fetch é feito depois que a estrutura do componente já existe e faz um `setState` dentro do `ComponentDidMount` ( maneira recomendada na documentação do React ), depois que esses dados chegam para a aplicação, fazendo a aplicação re-renderizar e trazer finalmente os dados.
 
-Você pode perceber também que o método `fetch()`, recebe dois parâmetros, o primeiro a url, e o segundo recebe um objeto com o método http, e algumas configurações opcionais como header e body por exemplo, no caso do nosso exemplo como estou pegando dados da api do Star Wars que é aberta, ele não me pediu nada disso.
+Você pode perceber também que o método `fetch()`, recebe dois parâmetros, o primeiro a url, e o segundo recebe um objeto com o método http e algumas configurações opcionais como *header* e *body* por exemplo, no caso do nosso exemplo como estou pegando dados da api do Star Wars que é aberta, ele não me pediu nada disso.
 
 Até aí tudo bem, mas e se eu quisesse criar um componente de fetch no qual eu passasse para ele a url e ele fizesse toda a logica de fetch e eu usasse esse resultado dentro da children do próprio componente? Seria muito f* top não seria?
 
@@ -76,6 +77,7 @@ Até aí tudo bem, mas e se eu quisesse criar um componente de fetch no qual eu 
 Você deve estar dizendo, ah isso é possível de se fazer com HOC, eu não vou entrar nos detalhes de HOC, até porque recentemente o Rafael Maruta escreveu um [post muito legal](https://medium.com/reactbrasil/meu-primeiro-higher-order-component-a376efc654a8) explicando de uma maneira bem simples o que é e como funciona. O que eu posso falar sobre HOC é que não é possível fazê-lo e mesmo se fosse possível seria muito inviável, seriam aqueles tipo de componente que é difícil de dar manutenção até mesmo pela mesma pessoa que fez depois de algum tempo. Mas então qual é a solução que você me propõe Lucas?
 
 ## A solução
+
 
 Utilizando o renderProps podemos resolver isso facilmente através de um conceito conhecido como children as a function, pra isso basta entender que o react nos permite retornar UI através de funções e usar isso a nosso favor, veja como é simples:
 
@@ -166,5 +168,5 @@ E voilá, agora temos um componente de fetch totamente reutilizável para usar q
 
 Vamos escrever os testes devidos para esse componente e para muitos outros no curso que sairá em breve, não deixe de me seguir, e seguir também o Caio Alcântara nas redes sociais. :-)
 
-E você? Qual uso dessa feature seria legal para implementar em seu workflow? Fiquei curioso agora. Deixe nos comentários aqui a abaixo.
+E você? Qual uso dessa feature seria legal para implementar em seu workflow? Fiquei curioso agora. Deixe nos comentários aqui abaixo.
 
