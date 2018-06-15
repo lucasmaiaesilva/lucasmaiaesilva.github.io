@@ -1,11 +1,13 @@
 <template>
-  <article class="post container">
-    <div class="post-content">
-      <div v-html="postContent" />
-      <Share :url="url" />
-      <disqus ref="disqus" v-bind:shortname="disqusShortname" :identifier="disqusId" />
-    </div>
-  </article>
+  <section class="post">
+    <article class="container">
+      <div class="post-content">
+        <div v-html="postContent" />
+        <Share :url="url" />
+        <disqus ref="disqus" v-bind:shortname="disqusShortname" :identifier="disqusId" />
+      </div>
+    </article>
+  </section>
 </template>
 
 <style>
@@ -19,15 +21,18 @@
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.07);
   margin-bottom: 5rem;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .post-content {
   margin: 1rem 0;
-  padding: 1rem;
+  background: #fff;
 }
 
 .post-content h1 {
   margin: 2rem 0;
+  padding-top: 2rem;
   line-height: 2rem;
   font-size: 1.6rem;
 }
@@ -39,6 +44,10 @@
   background: #282c34;
   width: 100%;
   padding: 1rem 1rem;
+  margin: 48px 0;
+  margin: 3rem -1rem;
+  width: calc(100% + 2rem);
+  font-size: .9rem;
 }
 
 .post-content p > code {
@@ -53,9 +62,11 @@
   width: 100%;
 }
 
-.post-content pre {
-  margin: 3rem 0;
-}  
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  margin-bottom: 2rem;
+}
 
 .post p {
   margin-bottom: 3rem;

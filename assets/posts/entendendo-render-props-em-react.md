@@ -1,3 +1,4 @@
+# Criando um componente de Fetch reutilizável com Render Props
 
 Saudações meu povo. Depois de mais de 2 anos sem escrever um post, finalmente consegui um tempinho, fiz um novo layout para o Blog a nova versão foi escrita em Vue Js com Nuxt ( mas isso é assunto para um novo post ). Hoje vim falar com vocês em específico de uma feature em React que está fazendo muito barulho atualmente ( data de escrita desse post ). E como vi que muitas pessoas ficaram com dúvida de como usar eu resolvi escrever um pouco sobre uma experiência que tive e que talvez ajude alguns de vocês a entender essa feature do React.
 
