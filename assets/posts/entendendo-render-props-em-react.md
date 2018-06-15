@@ -1,17 +1,18 @@
 # Criando um componente de Fetch reutilizável com Render Props
 
-Saudações meu povo. Depois de mais de 2 anos sem escrever um post, finalmente consegui um tempinho, fiz um novo layout para o Blog a nova versão foi escrita em Vue Js com Nuxt ( mas isso é assunto para um novo post ). Hoje vim falar com vocês em específico de uma feature em React que está fazendo muito barulho atualmente ( data de escrita desse post ). E como vi que muitas pessoas ficaram com dúvida de como usar eu resolvi escrever um pouco sobre uma experiência que tive e que talvez ajude alguns de vocês a entender essa feature do React.
+Saudações meu povo. Depois de mais de 2 anos sem escrever um post, finalmente consegui um tempinho, fiz um novo layout para o Blog a nova versão foi escrita em Vue Js com Nuxt ( mas isso é assunto para um novo post ). Hoje vim falar com vocês sobre um pattern de React que está fazendo muito barulho atualmente ( data de escrita deste post ). Percebi muita dificuldade das pessoas em entendê-la e utilizá-la e resolvi escrever um pouco sobre uma experiência que tive e que talvez ajude alguns de vocês.
 
-Peço mil perdões porque como esse é um post bem específico não vou ficar me atentando a explicar o que é o React ou como funciona, até porquê existem vários tipos de materiais por ai que vão te fazer entender bem essa feature, e partindo do pressuposto que você veio até aqui pelo título do post.
+`Este é um post específico sobre a feature`. Não irei dar uma visão geral do React nem como funciona, para isso você pode acompanhar o [artigo do Hugo Bessa](http://hugobessa.com.br/comecando-com-react/) sobre o assunto.
 
-Recentemente estou criando a ementa de um curso que eu e o [Caio Alcantara](https://twitter.com/clucasalcantara) vamos postar pra vocês em breve pela Udemy, e nesse curso vão haver alguns componentes que o aluno ficará como portfolio para serem utilizados em projetos futuros, e me veio na cabeça a ideia de criar um componente `<Fetch>`.
+Eu, juntamente com [Caio Alcantara](https://twitter.com/clucasalcantara) iremos lançar um curso de React no portal da Udemy, no qual durante a contrução da ementa me veio a ideia de criar um componente facilmente reutilizável de `<Fetch>`.
+
 
 ## Entendendo o problema
 
 
-Não é exatamente um problema, mas uma coisa que estava me incomodando bastante ultimamente no React era o fato de que mesmo trabalhando com componentes, algumas coisas se tornam muito difíceis de serem reaproveitadas, principalmente quando estamos falando de lógicas envolvendo ciclo de vida, ou algo que fuja um pouco da nosso bom e velho render( ) e eu sou um pouco incomodado com diretório de 'utils' dentro de projetos ( as vezes são sim necessários ). E recentemente eu li um post do [Michael Jackson](https://twitter.com/mjackson) que é um dos criadores do react router e foi meu tutor no Nanodegree de React da Udacity ( não me pagaram pra fazer jabá, #thalesMeMandaUmaCamisa ), e ele explicou essa feature do **renderProps** ou também conhecida como **children as a function** que resolvia uma coisa que estava me incomodando e resolvi deixar isso aqui para vocês que tenho certeza que vai ajudar muito, aliás, [clique aqui](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) para ler o post dele sobre o assunto, mas uma coisa que me chamou atenção é que no post dele, ele colocou um exemplo um pouco abstrato demais e resolvi explicar aqui para vocês com um exemplo mais da vida real pra vocês entenderem o quão poderoso é essa feature. Mas vamos então ao que interessa.
+Não é exatamente um problema, mas uma coisa que estava me incomodando bastante ultimamente no React era o fato de que mesmo trabalhando com componentes, algumas coisas se tornam muito difíceis de serem reaproveitadas, principalmente quando estamos falando de lógicas envolvendo ciclo de vida, ou algo que fuja um pouco da nosso bom e velho render( ) e eu sou um pouco incomodado com diretório de 'utils' dentro de projetos ( as vezes são sim necessários ). Recentemente eu li um post do [Michael Jackson](https://twitter.com/mjackson) que é um dos criadores do react router e foi meu tutor no Nanodegree de React da Udacity ( não me pagaram pra fazer jabá, #thalesMeMandaUmaCamisa ), e ele explicou essa feature do **renderProps** ou também conhecida como **children as a function** que resolvia uma coisa que estava me incomodando e resolvi deixar isso aqui para vocês que tenho certeza que vai ajudar muito, aliás, [recomendo que leiam o post dele sobre o assunto](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) se você não fala inglês não se preocupe, esse post vai te ajudar a entender sem problemas. Mas uma coisa que me chamou atenção é que no post dele, ele colocou um exemplo um pouco abstrato demais e resolvi explicar aqui para vocês com um exemplo mais da vida real pra vocês entenderem o quão poderosa é essa feature. Mas vamos então ao que interessa.
 
-Em quase todos os projetos que fazemos em React precisamos consumir dados de apis de outros locais correto? E para fazer isso temos que criar fetchs em nossos projetos. Existem algumas formas de se fazer fetch com react, mas a lógica é sempre a mesma, dêem uma olhada no exemplo:
+Em quase todos os projetos que fazemos em React precisamos consumir dados de apis de outros locais correto? E fazemos isso através de uma ferramenta poderosa que a Microsoft criou chamada `AJAX` antigamente precisávamos de uma série de presets para fazer a mágica acontecer, mas agora existe uma função chamada `fetch`. Vejamos como implementar uma requisição AJAX no React:
 
 ```js
 import React, { Component } from 'react'
@@ -28,7 +29,7 @@ class Fetch extends Component, { Fragment } {
   componentDidMount() {
     try {
     fetch('https://swapi.co/api/people/1', { method: 'GET' })
-    	.then(res => res.json())
+      .then(res => res.json())
       .then(data => this.setState({ data, isLoading: false }))
     }
     catch(e) {
@@ -61,7 +62,7 @@ export default Fetch;
 
 Se você observar com atenção vai perceber que:
 
-* O componente inicia em um estado de Loading ou alguma flag que te permita controlar se aquele dado já chegou ou não para o componente.
+* O componente inicia em um estado de Loading ou alguma flag que te permita controlar se aquele dado já chegou ou não.
 
 * O fetch é feito depois que a estrutura do componente já existe e faz um `setState` dentro do `ComponentDidMount` ( maneira recomendada na documentação do React ), depois que esses dados chegam para a aplicação, fazendo a aplicação re-renderizar e trazer finalmente os dados.
 
