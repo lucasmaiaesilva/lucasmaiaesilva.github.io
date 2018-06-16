@@ -106,7 +106,7 @@ class Fetch extends Component {
     }
   }
   render() {
-    if (hasError) {
+    if (this.state.hasError) {
       return <h1>Um erro aconteceu e não foi possível fazer o fetch!</h1>
     }
     if (this.state.isLoading) {
